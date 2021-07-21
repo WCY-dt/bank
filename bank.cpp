@@ -3,6 +3,7 @@
 #include "ui_bank.h"
 #include "login.h"
 #include "createaccount.h"
+#include "accountlist.h"
 #include<QDialog>
 #include<QMessageBox>
 #include <QString>
@@ -15,6 +16,10 @@ bank::bank(QWidget *parent)
     , ui(new Ui::bank)
 {
     ui->setupUi(this);
+    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(),this->height());
 }
 
 bank::~bank()
@@ -49,4 +54,12 @@ void bank::on_exitButton_clicked()
         default:
             break;
     }
+}
+
+void bank::on_printAccountButton_clicked()
+{
+    accountlist *accountlist_windows;
+    accountlist_windows = new accountlist();
+    accountlist_windows->show();
+    this->close();
 }

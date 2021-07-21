@@ -28,6 +28,8 @@ private slots:
 
     void on_options_withdrawButton_clicked();
 
+    void on_options_flowButton_clicked();
+
 private:
     Ui::options *ui;
 };

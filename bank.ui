@@ -72,7 +72,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>打印用户</string>
+     <string>账户查看</string>
     </property>
    </widget>
   </widget>

@@ -6,6 +6,7 @@
 #include "editprofile.h"
 #include "editpasswd.h"
 #include "withdraw.h"
+#include "flowlist.h"
 #include<QMessageBox>
 #include <QDebug>
 #include<time.h>
@@ -17,6 +18,11 @@ options::options(QWidget *parent) :
     ui(new Ui::options)
 {
     ui->setupUi(this);
+
+    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(),this->height());
 }
 
 options::~options()
@@ -67,7 +73,7 @@ void options::on_options_passwdButton_clicked()
 
 void options::on_options_lostButton_clicked()
 {
-    int result=QMessageBox::warning(this, tr(""), tr("确认挂失吗？"), tr("确认"), tr("返回"),0,1);
+    int result=QMessageBox::warning(this, tr(""), tr("确认挂失吗？"), tr("确认"), tr("取消"),0,1);
     switch(result)
     {
         case 0:
@@ -87,5 +93,13 @@ void options::on_options_withdrawButton_clicked()
     withdraw *withdraw_windows;
     withdraw_windows = new withdraw();
     withdraw_windows->show();
+    this->close();
+}
+
+void options::on_options_flowButton_clicked()
+{
+    flowlist *flowlist_windows;
+    flowlist_windows = new flowlist();
+    flowlist_windows->show();
     this->close();
 }

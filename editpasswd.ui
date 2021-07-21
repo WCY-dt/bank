@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>修改密码</string>
   </property>
   <widget class="QPushButton" name="login_backButton">
    <property name="geometry">

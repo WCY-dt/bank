@@ -14,6 +14,11 @@ login::login(QWidget *parent) :
     ui(new Ui::login)
 {
     ui->setupUi(this);
+
+    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(),this->height());
 }
 
 login::~login()

@@ -26,6 +26,11 @@ createaccount::createaccount(QWidget *parent) :
         //qDebug()<<(QString::fromStdString(strNumber));
     }
     ui->login_accountInput->setText(QString::fromStdString(strNumber));
+
+    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(),this->height());
 }
 
 createaccount::~createaccount()

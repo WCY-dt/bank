@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>存款</string>
   </property>
   <widget class="QPushButton" name="deposit_okButton">
    <property name="geometry">

@@ -31,6 +31,23 @@ public:
     time_t GetLostTime(string);
     string GetOperator(string);
 
+    string GetNumber(int);
+    string GetName(int);
+    string GetAddress(int);
+    int GetType(int);
+    double GetInterest(int);
+    bool GetLost(int);
+    time_t GetLostTime(int);
+    string GetOperator(int);
+
+    int GetNumberOfAccounts();
+    int GetNumberOfFlows(string);
+
+    time_t GetTime(string,int);
+    double GetMoney(string,int);
+    int GetOperationType(string,int);
+    string GetOperator(string,int);
+
     void DepositMoney(string,time_t,double,string);
     bool WithdrawMoney(string,time_t,double,string);
 

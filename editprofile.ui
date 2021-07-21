@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>修改资料</string>
   </property>
   <widget class="QLineEdit" name="login_nameInput">
    <property name="geometry">

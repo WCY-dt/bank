@@ -21,12 +21,15 @@ void bankdb::GetFile()
     mAccount.clear();
     mMoney.clear();
 
-    int iNumberOfAccounts,iNumberOfFlow;
+    time_t tTmpTime=time(nullptr);
+    double iAccountMoney=0;
+
+    int iNumOfAccounts,iNumOfFlow;
     ifstream iFile("E:\\code\\bank\\bankdb.db");
 
-    iFile>>iNumberOfAccounts;
-    qDebug()<<(QString::number(iNumberOfAccounts));
-    for (int i=0;i<iNumberOfAccounts;i++)
+    iFile>>iNumOfAccounts;
+    qDebug()<<(QString::number(iNumOfAccounts));
+    for (int i=0;i<iNumOfAccounts;i++)
     {
         accountInfo tmpAccount;
         iFile>>tmpAccount.strNumber
@@ -38,9 +41,9 @@ void bankdb::GetFile()
              >>tmpAccount.bLost
              >>tmpAccount.tLostTime
              >>tmpAccount.strOperator
-             >>iNumberOfFlow;
+             >>iNumOfFlow;
         mMoney[tmpAccount.strNumber]=0;
-        for (int j=0;j<iNumberOfFlow;j++)
+        for (int j=0;j<iNumOfFlow;j++)
         {
             flowInfo tmpFlow;
             iFile>>tmpFlow.tTime
@@ -65,14 +68,14 @@ void bankdb::GetFile()
 
 void bankdb::WriteFile()
 {
-    int iNumberOfAccounts=vAccount.size();
+    int iNumOfAccounts=vAccount.size();
     ofstream oFile("E:\\code\\bank\\bankdb.db",ios::trunc);
 
-    oFile<<iNumberOfAccounts<<"\n";
-    for (int i=0;i<iNumberOfAccounts;i++)
+    oFile<<iNumOfAccounts<<"\n";
+    for (int i=0;i<iNumOfAccounts;i++)
     {
         accountInfo tmpAccount=vAccount[i];
-        int iNumberOfFlow=tmpAccount.vFlow.size();
+        int iNumOfFlow=tmpAccount.vFlow.size();
         oFile<<tmpAccount.strNumber<<"\n"
              <<tmpAccount.strName<<"\n"
              <<tmpAccount.strPasswd<<"\n"
@@ -82,8 +85,8 @@ void bankdb::WriteFile()
              <<tmpAccount.bLost<<"\n"
              <<tmpAccount.tLostTime<<"\n"
              <<tmpAccount.strOperator<<"\n"
-             <<iNumberOfFlow<<"\n";
-        for (int j=0;j<iNumberOfFlow;j++)
+             <<iNumOfFlow<<"\n";
+        for (int j=0;j<iNumOfFlow;j++)
         {
             flowInfo tmpFlow=tmpAccount.vFlow[j];
             oFile<<tmpFlow.tTime<<"\n"
@@ -119,6 +122,7 @@ void bankdb::EditAccount(string strNum,string strNam, string strAdd, int iTyp, d
     vAccount[mAccount[strNum]].iType=iTyp;
     vAccount[mAccount[strNum]].dInterest=dInt;
     WriteFile();
+    GetFile();
 }
 
 void bankdb::EditPasswd(string strNum, string strPas)
@@ -187,6 +191,76 @@ time_t bankdb::GetLostTime(string strNumber)
 string bankdb::GetOperator(string strNumber)
 {
     return vAccount[mAccount[strNumber]].strOperator;
+}
+
+string bankdb::GetNumber(int iNum)
+{
+    return vAccount[iNum].strNumber;
+}
+
+string bankdb::GetName(int iNum)
+{
+    return vAccount[iNum].strName;
+}
+
+string bankdb::GetAddress(int iNum)
+{
+    return vAccount[iNum].strAddress;
+}
+
+int bankdb::GetType(int iNum)
+{
+    return vAccount[iNum].iType;
+}
+
+double bankdb::GetInterest(int iNum)
+{
+    return vAccount[iNum].dInterest;
+}
+
+bool bankdb::GetLost(int iNum)
+{
+    return vAccount[iNum].bLost;
+}
+
+time_t bankdb::GetLostTime(int iNum)
+{
+    return vAccount[iNum].tLostTime;
+}
+
+string bankdb::GetOperator(int iNum)
+{
+    return vAccount[iNum].strOperator;
+}
+
+int bankdb::GetNumberOfAccounts()
+{
+    return vAccount.size();
+}
+
+int bankdb::GetNumberOfFlows(string strNumber)
+{
+    return vAccount[mAccount[strNumber]].vFlow.size();
+}
+
+time_t bankdb::GetTime(string strNumber, int iFlow)
+{
+    return vAccount[mAccount[strNumber]].vFlow[iFlow].tTime;
+}
+
+double bankdb::GetMoney(string strNumber, int iFlow)
+{
+    return vAccount[mAccount[strNumber]].vFlow[iFlow].dMoney;
+}
+
+int bankdb::GetOperationType(string strNumber, int iFlow)
+{
+    return vAccount[mAccount[strNumber]].vFlow[iFlow].iOperationType;
+}
+
+string bankdb::GetOperator(string strNumber, int iFlow)
+{
+    return vAccount[mAccount[strNumber]].vFlow[iFlow].strOperator;
 }
 
 void bankdb::DepositMoney(string strNumber, time_t tTim, double dMon, string strOpe)

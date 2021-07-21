@@ -15,6 +15,11 @@ deposit::deposit(QWidget *parent) :
     ui->setupUi(this);
     ui->deposit_moneyInput->setText("0");
     ui->deposit_moneyInput->setFocus();
+
+    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(),this->height());
 }
 
 deposit::~deposit()

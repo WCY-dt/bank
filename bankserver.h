@@ -31,6 +31,26 @@ public:
     time_t GetLostTime();
     string GetOperator();
 
+    string GetNumber(int);
+    string GetName(int);
+    string GetAddress(int);
+    int GetType(int);
+    double GetInterest(int);
+    bool GetLost(int);
+    time_t GetLostTime(int);
+    string GetOperator(int);
+
+    int GetNumberOfAccounts();
+    int GetNumberOfFlows();
+
+    time_t GetTime(int);
+    double GetMoney(int);
+    int GetOperationType(int);
+    string GetFlowOperator(int);
+
+    double GetTotal();
+    double GetPrepare(time_t);
+
 private:
     bankdb db;
     string strCurrentNumber;

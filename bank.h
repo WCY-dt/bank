@@ -22,6 +22,8 @@ private slots:
 
     void on_exitButton_clicked();
 
+    void on_printAccountButton_clicked();
+
 private:
     Ui::bank *ui;
 };

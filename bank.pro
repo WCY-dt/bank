@@ -16,12 +16,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    accountlist.cpp \
     bankdb.cpp \
     bankserver.cpp \
     createaccount.cpp \
     deposit.cpp \
+    economiccalc.cpp \
     editpasswd.cpp \
     editprofile.cpp \
+    flowlist.cpp \
     login.cpp \
     main.cpp \
     bank.cpp \
@@ -29,23 +32,28 @@ SOURCES += \
     withdraw.cpp
 
 HEADERS += \
+    accountlist.h \
     bank.h \
     bankdb.h \
     bankserver.h \
     createaccount.h \
     deposit.h \
+    economiccalc.h \
     editpasswd.h \
     editprofile.h \
+    flowlist.h \
     login.h \
     options.h \
     withdraw.h
 
 FORMS += \
+    accountlist.ui \
     bank.ui \
     createaccount.ui \
     deposit.ui \
     editpasswd.ui \
     editprofile.ui \
+    flowlist.ui \
     login.ui \
     options.ui \
     withdraw.ui

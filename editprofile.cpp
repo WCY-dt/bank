@@ -19,6 +19,11 @@ editprofile::editprofile(QWidget *parent) :
     ui->login_addressInput->setText(QString::fromStdString(bankserver.GetAddress()));
     ui->login_typeCombobox->setCurrentIndex(bankserver.GetType());
     ui->login_interestInput->setText(QString::number(bankserver.GetInterest()));
+
+    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(),this->height());
 }
 
 editprofile::~editprofile()

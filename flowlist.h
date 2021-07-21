@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class flowlist;
+namespace Ui
+{
+    class flowlist;
 }
 
 class flowlist : public QDialog
@@ -19,6 +20,8 @@ private slots:
     void on_accountlist_backButton_clicked();
 
     void on_accountlist_searchEdit_textChanged(const QString &arg1);
+
+    void on_accountlist_exportButton_clicked();
 
 private:
     Ui::flowlist *ui;

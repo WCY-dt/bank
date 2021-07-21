@@ -1,24 +1,23 @@
 #include "login.h"
-#include "ui_login.h"
-#include "options.h"
 #include "bank.h"
 #include "bankserver.h"
-#include<stdio.h>
-#include<QMessageBox>
+#include "options.h"
+#include "ui_login.h"
 #include <QDebug>
+#include <QMessageBox>
+#include <stdio.h>
 
 extern bankServer bankserver;
 
-login::login(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::login)
+login::login(QWidget *parent) : QDialog(parent),
+                                ui(new Ui::login)
 {
     ui->setupUi(this);
 
-    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
-    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
-    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
-    setFixedSize(this->width(),this->height());
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(), this->height());
 }
 
 login::~login()
@@ -29,8 +28,8 @@ login::~login()
 void login::on_login_okButton_clicked()
 {
     //qDebug()<<("登陆中。。。\n");
-    if(!bankserver.Login(ui->login_accountInput->text().toStdString(),
-                            ui->login_passwdInput->text().toStdString()))
+    if (!bankserver.Login(ui->login_accountInput->text().toStdString(),
+                          ui->login_passwdInput->text().toStdString()))
     {
         ui->login_passwdInput->setText(QString::fromStdString(""));
         QMessageBox::critical(this, tr("错误"), tr("密码错误！"), tr("确认"), 0);
@@ -54,7 +53,7 @@ void login::on_login_backButton_clicked()
 
 void login::on_login_accountInput_textChanged(const QString &arg1)
 {
-    if (arg1.toStdString()=="")
+    if (arg1.toStdString() == "")
     {
         ui->login_accountStateLabel->setText(QString::fromStdString(""));
     }

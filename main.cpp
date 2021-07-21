@@ -17,11 +17,11 @@ bankServer bankserver;
 
 int main(int argc, char *argv[])
 {
-    //qDebug()<<("程序开始\n");
-    QApplication a(argc, argv);
+  //qDebug()<<("程序开始\n");
+  QApplication a(argc, argv);
 
-    bank w;
-    w.show();
+  bank w;
+  w.show();
 
-    return a.exec();
+  return a.exec();
 }

@@ -1,28 +1,28 @@
 #include "flowlist.h"
-#include "ui_flowlist.h"
-#include "options.h"
 #include "bank.h"
 #include "bankserver.h"
-#include<stdio.h>
-#include<QMessageBox>
+#include "options.h"
+#include "ui_flowlist.h"
 #include <QDebug>
+#include <QFileDialog>
+#include <QMessageBox>
 #include <QStandardItemModel>
 #include <QTableView>
+#include <stdio.h>
 
 extern bankServer bankserver;
 
-flowlist::flowlist(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::flowlist)
+flowlist::flowlist(QWidget *parent) : QDialog(parent),
+                                      ui(new Ui::flowlist)
 {
     ui->setupUi(this);
     SetDefault();
     ui->label_4->setText(QString::number(bankserver.GetTotal()));
 
-    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
-    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
-    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
-    setFixedSize(this->width(),this->height());
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(), this->height());
 }
 
 flowlist::~flowlist()
@@ -38,15 +38,13 @@ void flowlist::on_accountlist_backButton_clicked()
     this->close();
 }
 
-
-
 void flowlist::on_accountlist_searchEdit_textChanged(const QString &arg1)
 {
-    string strSearchString=arg1.toStdString();
-    QStandardItemModel* model = new QStandardItemModel(this);
+    string strSearchString = arg1.toStdString();
+    QStandardItemModel *model = new QStandardItemModel(this);
     ui->accountlist_tableView->setModel(model);
 
-    model->setHorizontalHeaderItem(0, new QStandardItem("操作时间") );
+    model->setHorizontalHeaderItem(0, new QStandardItem("操作时间"));
     model->setHorizontalHeaderItem(1, new QStandardItem("操作类型"));
     model->setHorizontalHeaderItem(2, new QStandardItem("金额"));
     model->setHorizontalHeaderItem(3, new QStandardItem("操作员"));
@@ -60,22 +58,22 @@ void flowlist::on_accountlist_searchEdit_textChanged(const QString &arg1)
     ui->accountlist_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->accountlist_tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    int iNumberOfFlows=bankserver.GetNumberOfFlows();
+    int iNumberOfFlows = bankserver.GetNumberOfFlows();
 
-    int iItemsFinded=-1;
-    for (int i=0;i<iNumberOfFlows;i++)
+    int iItemsFinded = -1;
+    for (int i = 0; i < iNumberOfFlows; i++)
     {
-        int iTmpType=bankserver.GetOperationType(i);
-        time_t tTime=bankserver.GetTime(i);
+        int iTmpType = bankserver.GetOperationType(i);
+        time_t tTime = bankserver.GetTime(i);
 
         string strTypeString;
-        switch(iTmpType)
+        switch (iTmpType)
         {
         case 0:
-            strTypeString="存款";
+            strTypeString = "存款";
             break;
         case 1:
-            strTypeString="取款";
+            strTypeString = "取款";
             break;
         }
 
@@ -86,7 +84,7 @@ void flowlist::on_accountlist_searchEdit_textChanged(const QString &arg1)
         localtime_s(pTm, &tTime);
         //pTm = localtime(&time_t_time);
         pTm->tm_year += 1900;
-        pTm->tm_mon +=1;
+        pTm->tm_mon += 1;
 
         sprintf_s(szTime, "%04d年%02d月%02d日 %02d:%02d:%02d",
                   pTm->tm_year,
@@ -101,27 +99,27 @@ void flowlist::on_accountlist_searchEdit_textChanged(const QString &arg1)
         delete pTm;
         pTm = NULL;
 
-        if (bankserver.GetMoney(i)==arg1.toDouble() ||
-            strTypeString.find(strSearchString)!=string::npos ||
-            strTime.find(strSearchString)!=string::npos ||
-            bankserver.GetOperator(i).find(strSearchString)!=string::npos)
+        if (bankserver.GetMoney(i) == arg1.toDouble() ||
+            strTypeString.find(strSearchString) != string::npos ||
+            strTime.find(strSearchString) != string::npos ||
+            bankserver.GetOperator(i).find(strSearchString) != string::npos)
         {
             iItemsFinded++;
             model->setItem(iItemsFinded, 0, new QStandardItem(QString::fromStdString(strTime)));
             model->setItem(iItemsFinded, 1, new QStandardItem(QString::fromStdString(strTypeString)));
             model->setItem(iItemsFinded, 2, new QStandardItem(QString::number(bankserver.GetMoney(i))));
-            model->setItem(iItemsFinded, 3, new QStandardItem(QString::fromStdString(bankserver.GetOperator(i))));
+            model->setItem(iItemsFinded, 3, new QStandardItem(QString::fromStdString(bankserver.GetFlowOperator(i))));
         }
     }
-    ui->label_2->setNum(iItemsFinded+1);
+    ui->label_2->setNum(iItemsFinded + 1);
 }
 
 void flowlist::SetDefault()
 {
-    QStandardItemModel* model = new QStandardItemModel(this);
+    QStandardItemModel *model = new QStandardItemModel(this);
     ui->accountlist_tableView->setModel(model);
 
-    model->setHorizontalHeaderItem(0, new QStandardItem("操作时间") );
+    model->setHorizontalHeaderItem(0, new QStandardItem("操作时间"));
     model->setHorizontalHeaderItem(1, new QStandardItem("操作类型"));
     model->setHorizontalHeaderItem(2, new QStandardItem("金额"));
     model->setHorizontalHeaderItem(3, new QStandardItem("操作员"));
@@ -135,21 +133,21 @@ void flowlist::SetDefault()
     ui->accountlist_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->accountlist_tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    int iNumberOfFlows=bankserver.GetNumberOfFlows();
+    int iNumberOfFlows = bankserver.GetNumberOfFlows();
 
-    for (int i=0;i<iNumberOfFlows;i++)
+    for (int i = 0; i < iNumberOfFlows; i++)
     {
-        int iTmpType=bankserver.GetOperationType(i);
-        time_t tTime=bankserver.GetTime(i);
+        int iTmpType = bankserver.GetOperationType(i);
+        time_t tTime = bankserver.GetTime(i);
         //qDebug()<<("Type=")<<(iTmpType);
         string strTypeString;
-        switch(iTmpType)
+        switch (iTmpType)
         {
         case 0:
-            strTypeString="存款";
+            strTypeString = "存款";
             break;
         case 1:
-            strTypeString="取款";
+            strTypeString = "取款";
             break;
         }
         //qDebug()<<("String=")<<(QString::fromStdString(strTypeString));
@@ -161,7 +159,7 @@ void flowlist::SetDefault()
         localtime_s(pTm, &tTime);
         //pTm = localtime(&time_t_time);
         pTm->tm_year += 1900;
-        pTm->tm_mon +=1;
+        pTm->tm_mon += 1;
 
         sprintf_s(szTime, "%04d年%02d月%02d日 %02d:%02d:%02d",
                   pTm->tm_year,
@@ -172,6 +170,7 @@ void flowlist::SetDefault()
                   pTm->tm_sec);
 
         strTime = szTime;
+        //qDebug()<<"here";
 
         delete pTm;
         pTm = NULL;
@@ -179,7 +178,23 @@ void flowlist::SetDefault()
         model->setItem(i, 0, new QStandardItem(QString::fromStdString(strTime)));
         model->setItem(i, 1, new QStandardItem(QString::fromStdString(strTypeString)));
         model->setItem(i, 2, new QStandardItem(QString::number(bankserver.GetMoney(i))));
-        model->setItem(i, 3, new QStandardItem(QString::fromStdString(bankserver.GetOperator(i))));
+        model->setItem(i, 3, new QStandardItem(QString::fromStdString(bankserver.GetFlowOperator(i))));
     }
     ui->label_2->setNum(iNumberOfFlows);
+}
+
+void flowlist::on_accountlist_exportButton_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("导出"),
+                                                    "",
+                                                    tr("超文本标记语言文件 (*.html)"));
+    if (!fileName.isNull())
+    {
+        //fileName是文件名
+        bankserver.ExportFlowFile(fileName.toStdString());
+        QMessageBox::information(this, NULL,
+                                 tr("导出成功"),
+                                 tr("确认"));
+    }
 }

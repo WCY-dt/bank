@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class deposit;
+namespace Ui
+{
+    class deposit;
 }
 
 class deposit : public QDialog

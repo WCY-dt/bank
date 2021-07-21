@@ -1,32 +1,30 @@
 #include "bank.h"
-#include "bankserver.h"
-#include "ui_bank.h"
-#include "login.h"
-#include "createaccount.h"
 #include "accountlist.h"
-#include<QDialog>
-#include<QMessageBox>
-#include <QString>
+#include "bankserver.h"
+#include "createaccount.h"
+#include "login.h"
+#include "ui_bank.h"
 #include <QDebug>
+#include <QDialog>
+#include <QMessageBox>
+#include <QString>
 
 extern bankServer bankserver;
 
 bank::bank(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::bank)
+    : QMainWindow(parent), ui(new Ui::bank)
 {
     ui->setupUi(this);
-    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
-    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
-    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
-    setFixedSize(this->width(),this->height());
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(), this->height());
 }
 
 bank::~bank()
 {
     delete ui;
 }
-
 
 void bank::on_loginButton_clicked()
 {
@@ -46,13 +44,13 @@ void bank::on_createAccountButton_clicked()
 
 void bank::on_exitButton_clicked()
 {
-    switch(QMessageBox::critical(this, tr("警告"), tr("确认退出系统吗?"), tr("确认"), tr("取消"), 0, 1))
+    switch (QMessageBox::critical(this, tr("警告"), tr("确认退出系统吗?"), tr("确认"), tr("取消"), 0, 1))
     {
-        case 0:
-            this->close();
-            break;
-        default:
-            break;
+    case 0:
+        this->close();
+        break;
+    default:
+        break;
     }
 }
 

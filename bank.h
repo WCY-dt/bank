@@ -4,7 +4,10 @@
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class bank; }
+namespace Ui
+{
+    class bank;
+}
 QT_END_NAMESPACE
 
 class bank : public QMainWindow

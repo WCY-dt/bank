@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class withdraw;
+namespace Ui
+{
+    class withdraw;
 }
 
 class withdraw : public QDialog

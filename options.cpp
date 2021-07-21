@@ -1,28 +1,27 @@
 #include "options.h"
-#include "ui_options.h"
 #include "bank.h"
 #include "bankserver.h"
 #include "deposit.h"
-#include "editprofile.h"
 #include "editpasswd.h"
-#include "withdraw.h"
+#include "editprofile.h"
 #include "flowlist.h"
-#include<QMessageBox>
+#include "ui_options.h"
+#include "withdraw.h"
 #include <QDebug>
-#include<time.h>
+#include <QMessageBox>
+#include <time.h>
 
 extern bankServer bankserver;
 
-options::options(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::options)
+options::options(QWidget *parent) : QDialog(parent),
+                                    ui(new Ui::options)
 {
     ui->setupUi(this);
 
-    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
-    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
-    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
-    setFixedSize(this->width(),this->height());
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(), this->height());
 }
 
 options::~options()
@@ -32,16 +31,16 @@ options::~options()
 
 void options::on_options_logoutButton_clicked()
 {
-    switch(QMessageBox::critical(this, tr("警告"), tr("确认注销吗?"), tr("确认"), tr("取消"), 0, 1))
+    switch (QMessageBox::critical(this, tr("警告"), tr("确认注销吗?"), tr("确认"), tr("取消"), 0, 1))
     {
-        case 0:
-            bank *bank_windows;
-            bank_windows = new bank();
-            bank_windows->show();
-            this->close();
-            break;
-        default:
-            break;
+    case 0:
+        bank *bank_windows;
+        bank_windows = new bank();
+        bank_windows->show();
+        this->close();
+        break;
+    default:
+        break;
     }
 }
 
@@ -73,18 +72,18 @@ void options::on_options_passwdButton_clicked()
 
 void options::on_options_lostButton_clicked()
 {
-    int result=QMessageBox::warning(this, tr(""), tr("确认挂失吗？"), tr("确认"), tr("取消"),0,1);
-    switch(result)
+    int result = QMessageBox::warning(this, tr(""), tr("确认挂失吗？"), tr("确认"), tr("取消"), 0, 1);
+    switch (result)
     {
-        case 0:
-            time_t tCurrentTime=time(NULL);
-            bankserver.ReportLost(tCurrentTime);
-            QMessageBox::information(this, tr(""), tr("账户已挂失！"), tr("确认"), 0);
-            bank *bank_windows;
-            bank_windows = new bank();
-            bank_windows->show();
-            this->close();
-            break;
+    case 0:
+        time_t tCurrentTime = time(NULL);
+        bankserver.ReportLost(tCurrentTime);
+        QMessageBox::information(this, tr(""), tr("账户已挂失！"), tr("确认"), 0);
+        bank *bank_windows;
+        bank_windows = new bank();
+        bank_windows->show();
+        this->close();
+        break;
     }
 }
 

@@ -1,36 +1,35 @@
 #include "createaccount.h"
-#include "ui_createaccount.h"
 #include "bank.h"
 #include "bankserver.h"
+#include "ui_createaccount.h"
 #include <QDebug>
+#include <QMessageBox>
+#include <QString>
 #include <stdlib.h>
 #include <time.h>
-#include <QString>
-#include<QMessageBox>
 
 extern bankServer bankserver;
 
-createaccount::createaccount(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::createaccount)
+createaccount::createaccount(QWidget *parent) : QDialog(parent),
+                                                ui(new Ui::createaccount)
 {
     ui->setupUi(this);
     ui->login_accountInput->setStyleSheet("background:#F0F0F0;");
     ui->login_interestInput->setStyleSheet("background:#F0F0F0;");
     ui->login_nameInput->setFocus();
     srand((unsigned)time(NULL));
-    string strNumber="";
-    for(int i=1;i<=19;i++)
+    string strNumber = "";
+    for (int i = 1; i <= 19; i++)
     {
-        strNumber+=(char)((rand()%10)+'0');
+        strNumber += (char)((rand() % 10) + '0');
         //qDebug()<<(QString::fromStdString(strNumber));
     }
     ui->login_accountInput->setText(QString::fromStdString(strNumber));
 
-    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);
-    setWindowFlags(windowFlags()&~Qt::CustomizeWindowHint);
-    setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint);
-    setFixedSize(this->width(),this->height());
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);
+    setFixedSize(this->width(), this->height());
 }
 
 createaccount::~createaccount()
@@ -48,19 +47,19 @@ void createaccount::on_login_backButton_clicked()
 
 void createaccount::on_login_okButton_clicked()
 {
-    if (ui->login_passwdInput->text()!=ui->login_confirmPasswdInput->text())
+    if (ui->login_passwdInput->text() != ui->login_confirmPasswdInput->text())
     {
         QMessageBox::critical(this, tr("错误"), tr("请重新检查你的输入！"), tr("确认"), 0);
         return;
     }
-    string strNum=ui->login_accountInput->text().toStdString();
-    string strNam=ui->login_nameInput->text().toStdString();
-    string strPas=ui->login_passwdInput->text().toStdString();
-    string strAdd=ui->login_addressInput->text().toStdString();
-    int iTyp=ui->login_typeCombobox->currentIndex();
-    double dInt=ui->login_interestInput->text().toDouble();
-    string strOpe=ui->login_employeeInput->text().toStdString();
-    if(bankserver.AccountAdd(strNum, strNam, strPas, strAdd, iTyp, dInt, strOpe))
+    string strNum = ui->login_accountInput->text().toStdString();
+    string strNam = ui->login_nameInput->text().toStdString();
+    string strPas = ui->login_passwdInput->text().toStdString();
+    string strAdd = ui->login_addressInput->text().toStdString();
+    int iTyp = ui->login_typeCombobox->currentIndex();
+    double dInt = ui->login_interestInput->text().toDouble();
+    string strOpe = ui->login_employeeInput->text().toStdString();
+    if (bankserver.AccountAdd(strNum, strNam, strPas, strAdd, iTyp, dInt, strOpe))
     {
         QMessageBox::information(this, tr(""), tr("新账户已成功创建！"), tr("确认"), 0);
         bank *bank_windows;
@@ -79,7 +78,7 @@ void createaccount::on_login_okButton_clicked()
 
 void createaccount::on_login_confirmPasswdInput_textEdited(const QString &arg1)
 {
-    if (arg1!=ui->login_passwdInput->text())
+    if (arg1 != ui->login_passwdInput->text())
     {
         ui->login_repeatPasswdState->setStyleSheet("color:red;");
         ui->login_repeatPasswdState->setText(QString::fromStdString("× 密码重复不正确"));
@@ -93,7 +92,7 @@ void createaccount::on_login_confirmPasswdInput_textEdited(const QString &arg1)
 
 void createaccount::on_login_passwdInput_textEdited(const QString &arg1)
 {
-    if (arg1!=ui->login_confirmPasswdInput->text())
+    if (arg1 != ui->login_confirmPasswdInput->text())
     {
         ui->login_repeatPasswdState->setStyleSheet("color:red;");
         ui->login_repeatPasswdState->setText(QString::fromStdString("× 密码重复不正确"));
@@ -107,18 +106,18 @@ void createaccount::on_login_passwdInput_textEdited(const QString &arg1)
 
 void createaccount::on_login_typeCombobox_currentIndexChanged(int index)
 {
-    switch(index)
+    switch (index)
     {
-        case 0:
-            ui->login_interestInput->setText(QString::fromStdString("1.98"));
-            break;
-        case 1:
-            ui->login_interestInput->setText(QString::fromStdString("2.25"));
-            break;
-        case 2:
-            ui->login_interestInput->setText(QString::fromStdString("3.5"));
-            break;
-        default:
-            ui->login_interestInput->setText(QString::fromStdString("1.98"));
+    case 0:
+        ui->login_interestInput->setText(QString::fromStdString("1.98"));
+        break;
+    case 1:
+        ui->login_interestInput->setText(QString::fromStdString("2.25"));
+        break;
+    case 2:
+        ui->login_interestInput->setText(QString::fromStdString("3.5"));
+        break;
+    default:
+        ui->login_interestInput->setText(QString::fromStdString("1.98"));
     }
 }

@@ -1,9 +1,9 @@
 #ifndef BANKDB_H
 #define BANKDB_H
 
-#include<string>
-#include<vector>
-#include<map>
+#include <map>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -14,14 +14,14 @@ public:
     void GetFile();
     void WriteFile();
 
-    void AddAccount(string,string,string,string,int,double,string);
+    void AddAccount(string, string, string, string, int, double, string);
 
-    void EditAccount(string,string,string,int,double);
-    void EditPasswd(string,string);
-    void SetLost(string,time_t);
+    void EditAccount(string, string, string, int, double);
+    void EditPasswd(string, string);
+    void SetLost(string, time_t);
 
     bool ExistAccount(string);
-    bool CheckAccount(string,string);
+    bool CheckAccount(string, string);
 
     string GetName(string);
     string GetAddress(string);
@@ -43,24 +43,25 @@ public:
     int GetNumberOfAccounts();
     int GetNumberOfFlows(string);
 
-    time_t GetTime(string,int);
-    double GetMoney(string,int);
-    int GetOperationType(string,int);
-    string GetOperator(string,int);
+    time_t GetTime(string, int);
+    double GetMoney(string, int);
+    int GetOperationType(string, int);
+    string GetOperator(string, int);
 
-    void DepositMoney(string,time_t,double,string);
-    bool WithdrawMoney(string,time_t,double,string);
-
+    void DepositMoney(string, time_t, double, string);
+    bool WithdrawMoney(string, time_t, double, string);
 
 private:
-    struct flowInfo{
+    struct flowInfo
+    {
         time_t tTime;
         double dMoney;
         int iOperationType;
         string strOperator;
     };
 
-    struct accountInfo{
+    struct accountInfo
+    {
         string strNumber;
         string strName;
         string strPasswd;
@@ -75,9 +76,9 @@ private:
 
     vector<accountInfo> vAccount;
 
-    map<string,int> mAccount;
+    map<string, int> mAccount;
 
-    map<string,double> mMoney;
+    map<string, double> mMoney;
 };
 
 #endif // BANKDB_H

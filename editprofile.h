@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class editprofile;
+namespace Ui
+{
+    class editprofile;
 }
 
 class editprofile : public QDialog

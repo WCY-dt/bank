@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class accountlist;
+namespace Ui
+{
+    class accountlist;
 }
 
 class accountlist : public QDialog
@@ -21,6 +22,8 @@ private slots:
     void on_accountlist_searchEdit_textChanged(const QString &arg1);
 
     void on_dateEdit_dateChanged(const QDate &date);
+
+    void on_accountlist_exportButton_clicked();
 
 private:
     Ui::accountlist *ui;

@@ -14,9 +14,12 @@ createaccount::createaccount(QWidget *parent) : QDialog(parent),
                                                 ui(new Ui::createaccount)
 {
     ui->setupUi(this);
+
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->login_accountInput->setStyleSheet("background:#F0F0F0;");
     ui->login_interestInput->setStyleSheet("background:#F0F0F0;");
     ui->login_nameInput->setFocus();
+
     srand((unsigned)time(NULL));
     string strNumber = "";
     for (int i = 1; i <= 19; i++)

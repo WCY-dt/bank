@@ -12,6 +12,7 @@ withdraw::withdraw(QWidget *parent) : QDialog(parent),
                                       ui(new Ui::withdraw)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->deposit_moneyInput->setText("0");
     ui->deposit_moneyInput->setFocus();
 

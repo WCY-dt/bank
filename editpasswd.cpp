@@ -12,6 +12,7 @@ editpasswd::editpasswd(QWidget *parent) : QDialog(parent),
                                           ui(new Ui::editpasswd)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);

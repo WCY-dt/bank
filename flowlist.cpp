@@ -16,6 +16,8 @@ flowlist::flowlist(QWidget *parent) : QDialog(parent),
                                       ui(new Ui::flowlist)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+
     SetDefault();
     ui->label_4->setText(QString::number(bankserver.GetTotal()));
 

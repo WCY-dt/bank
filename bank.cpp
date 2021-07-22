@@ -15,6 +15,8 @@ bank::bank(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::bank)
 {
     ui->setupUi(this);
+
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);
     setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);

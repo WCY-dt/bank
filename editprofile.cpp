@@ -12,6 +12,7 @@ editprofile::editprofile(QWidget *parent) : QDialog(parent),
                                             ui(new Ui::editprofile)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->login_interestInput->setStyleSheet("background:#F0F0F0;");
     ui->login_nameInput->setFocus();
     ui->login_nameInput->setText(QString::fromStdString(bankserver.GetName()));

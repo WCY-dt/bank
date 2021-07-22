@@ -38,6 +38,9 @@ accountlist::accountlist(QWidget *parent) : QDialog(parent),
     pTm = NULL;
 
     ui->setupUi(this);
+
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+
     SetDefault();
 
     ui->dateEdit->setDate(QDate::fromString(QString::fromStdString(strTime), QString::fromStdString("yyyy-MM-dd")));
@@ -270,7 +273,7 @@ void accountlist::on_accountlist_exportButton_clicked()
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("导出"),
                                                     "",
-                                                    tr("超文本标记语言文件 (*.html)"));
+                                                    tr("*.html"));
     if (!fileName.isNull())
     {
         //fileName是文件名

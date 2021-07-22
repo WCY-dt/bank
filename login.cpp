@@ -13,6 +13,7 @@ login::login(QWidget *parent) : QDialog(parent),
                                 ui(new Ui::login)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     setWindowFlags(windowFlags() & ~Qt::CustomizeWindowHint);

@@ -21,23 +21,54 @@ void bankdb::GetFile()
     mAccount.clear();
     mMoney.clear();
 
-    time_t tTmpTime = time(nullptr);
-    double iAccountMoney = 0;
-
     int iNumOfAccounts, iNumOfFlow;
-    ifstream iFile("E:\\code\\bank\\bankdb.db");
+    ifstream iFile("bankdb.db",ios::binary);
+
+    if (!iFile)
+    {
+        iNumOfAccounts=0;
+        WriteFile();
+        return;
+    }
 
     iFile >> iNumOfAccounts;
-    qDebug() << (QString::number(iNumOfAccounts));
+    //qDebug() << (QString::number(iNumOfAccounts));
     for (int i = 0; i < iNumOfAccounts; i++)
     {
         accountInfo tmpAccount;
-        iFile >> tmpAccount.strNumber >> tmpAccount.strName >> tmpAccount.strPasswd >> tmpAccount.strAddress >> tmpAccount.iType >> tmpAccount.dInterest >> tmpAccount.bLost >> tmpAccount.tLostTime >> tmpAccount.strOperator >> iNumOfFlow;
+        string strTmpString;
+
+        iFile >> tmpAccount.strNumber;
+        //qDebug()<<(QString::fromStdString(tmpAccount.strNumber));
+        getline(iFile,strTmpString);
+
+        getline(iFile,tmpAccount.strName);
+        //qDebug()<<(QString::fromStdString(tmpAccount.strName));
+
+        getline(iFile,tmpAccount.strPasswd);
+        //qDebug()<<(QString::fromStdString(tmpAccount.strPasswd));
+
+        getline(iFile,tmpAccount.strAddress);
+        //qDebug()<<(QString::fromStdString(tmpAccount.strAddress));
+
+        iFile >> tmpAccount.iType >> tmpAccount.dInterest >> tmpAccount.bLost >> tmpAccount.tLostTime;
+        //qDebug()<<(QString::number(tmpAccount.iType));
+        //qDebug()<<(QString::number(tmpAccount.dInterest));
+        getline(iFile,strTmpString);
+
+        getline(iFile,tmpAccount.strOperator);
+        //qDebug()<<(QString::fromStdString(tmpAccount.strOperator));
+        iFile >> iNumOfFlow;
+
         mMoney[tmpAccount.strNumber] = 0;
         for (int j = 0; j < iNumOfFlow; j++)
         {
             flowInfo tmpFlow;
-            iFile >> tmpFlow.tTime >> tmpFlow.dMoney >> tmpFlow.iOperationType >> tmpFlow.strOperator;
+
+            iFile >> tmpFlow.tTime >> tmpFlow.dMoney >> tmpFlow.iOperationType;
+            getline(iFile,strTmpString);
+            getline(iFile,tmpFlow.strOperator);
+
             if (tmpFlow.iOperationType == 0)
             {
                 mMoney[tmpAccount.strNumber] += tmpFlow.dMoney;
@@ -57,7 +88,7 @@ void bankdb::GetFile()
 void bankdb::WriteFile()
 {
     int iNumOfAccounts = vAccount.size();
-    ofstream oFile("E:\\code\\bank\\bankdb.db", ios::trunc);
+    ofstream oFile("bankdb.db", ios::trunc | ios::binary);
 
     oFile << iNumOfAccounts << "\n";
     for (int i = 0; i < iNumOfAccounts; i++)

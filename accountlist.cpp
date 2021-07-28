@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     accountlist.cpp                                            *
+ * @brief    list of accounts                                           *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #include "accountlist.h"
 #include "bank.h"
 #include "bankserver.h"
@@ -254,17 +263,12 @@ void accountlist::SetDefault()
         model->setItem(i, 5, new QStandardItem(QString::fromStdString(strLostString)));
         model->setItem(i, 6, new QStandardItem(QString::fromStdString(bankserver.GetOperator(i))));
     }
-
-    //model->setRowCount(3);
-    //model->setHeaderData(0,Qt::Vertical, "行0");
 }
 
 void accountlist::on_dateEdit_dateChanged(const QDate &date)
 {
     time_t tTime = QDateTime::fromString(date.toString("yyyy-MM-dd 23:59:59"), "yyyy-MM-dd hh:mm:ss").toTime_t();
-    //qDebug()<<QDateTime::fromString(date.toString("yyyy-MM-dd 23:59:59"), "yyyy-MM-dd hh:mm:ss");
-    //qDebug()<<QDateTime::fromString(date.toString("yyyy-MM-dd 23:59:59"), "yyyy-MM-dd hh:mm:ss").toTime_t();
-    //qDebug()<<tTime;
+
     ui->label_6->setText(QString::number(bankserver.GetPrepare(tTime)));
 }
 
@@ -276,7 +280,6 @@ void accountlist::on_accountlist_exportButton_clicked()
                                                     tr("*.html"));
     if (!fileName.isNull())
     {
-        //fileName是文件名
         bankserver.ExportAccountFile(fileName.toStdString());
         QMessageBox::information(this, NULL,
                                  tr("导出成功"),

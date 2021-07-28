@@ -137,6 +137,11 @@ void bankServer::ReportLost(time_t tTime)
     db.SetLost(strCurrentNumber, tTime);
 }
 
+void bankServer::RidLost()
+{
+    db.RidLost(strCurrentNumber);
+}
+
 /** 
  * @brief deposit money
  * 

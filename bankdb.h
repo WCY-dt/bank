@@ -36,6 +36,7 @@ public:
     void EditAccount(string, string, string, int, double);
     void EditPasswd(string, string);
     void SetLost(string, time_t);
+    void RidLost(string);
     bool ExistAccount(string);
     bool CheckAccount(string, string);
 

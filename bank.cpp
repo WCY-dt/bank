@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     bank.cpp                                                   *
+ * @brief    Homepage                                                   *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #include "bank.h"
 #include "accountlist.h"
 #include "bankserver.h"

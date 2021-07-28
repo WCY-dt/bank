@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     login.h                                                    *
+ * @brief    page for logging in                                        *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #ifndef LOGIN_H
 #define LOGIN_H
 

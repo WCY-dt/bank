@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     editpasswd.h                                               *
+ * @brief    page for editing password                                  *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #ifndef EDITPASSWD_H
 #define EDITPASSWD_H
 

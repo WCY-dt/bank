@@ -221,6 +221,13 @@ void bankdb::SetLost(string strNum, time_t tTim)
     WriteFile();
 }
 
+void bankdb::RidLost(string strNum)
+{
+    vAccount[mAccount[strNum]].bLost = false;
+    vAccount[mAccount[strNum]].tLostTime = 0;
+    WriteFile();
+}
+
 /** 
  * @brief judge whether the account exists
  * 

@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     login.cpp                                                  *
+ * @brief    page for logging in                                        *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #include "login.h"
 #include "bank.h"
 #include "bankserver.h"
@@ -28,12 +37,22 @@ login::~login()
 
 void login::on_login_okButton_clicked()
 {
-    //qDebug()<<("登陆中。。。\n");
     if (!bankserver.Login(ui->login_accountInput->text().toStdString(),
                           ui->login_passwdInput->text().toStdString()))
     {
         ui->login_passwdInput->setText(QString::fromStdString(""));
         QMessageBox::critical(this, tr("错误"), tr("密码错误！"), tr("确认"), 0);
+    }
+    else if (bankserver.GetLost())
+    {
+        if (!QMessageBox::critical(this, tr(""), tr("账户已被挂失！\n是否解除挂失？"), tr("解除挂失"), tr("返回"), 0, 1))
+        {
+            bankserver.RidLost();
+            options *options_windows;
+            options_windows = new options();
+            options_windows->show();
+            this->close();
+        }
     }
     else
     {

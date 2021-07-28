@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     creataccount.cpp                                           *
+ * @brief    page for creating accout                                   *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #include "createaccount.h"
 #include "bank.h"
 #include "bankserver.h"

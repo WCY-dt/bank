@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     accountlist.h                                              *
+ * @brief    list of accounts                                           *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #ifndef ACCOUNTLIST_H
 #define ACCOUNTLIST_H
 

@@ -141,18 +141,18 @@
     <rect>
      <x>310</x>
      <y>639</y>
-     <width>61</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>需要筹款</string>
+    <string>共需要筹款</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>390</x>
      <y>639</y>
      <width>51</width>
      <height>31</height>
@@ -165,7 +165,7 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>440</x>
      <y>639</y>
      <width>20</width>
      <height>31</height>

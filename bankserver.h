@@ -31,6 +31,7 @@ public:
     bool PasswdEdit(string, string);
     bool Login(string, string);
     void ReportLost(time_t);
+    void RidLost();
 
     /**
      * @defgroup deposit and withdraw money

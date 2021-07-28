@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     withdraw.cpp                                               *
+ * @brief    page for withdrawing money                                 *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #include "withdraw.h"
 #include "bankserver.h"
 #include "options.h"

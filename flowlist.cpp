@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     flowlist.cpp                                               *
+ * @brief    page for showing flow list                                 *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #include "flowlist.h"
 #include "bank.h"
 #include "bankserver.h"

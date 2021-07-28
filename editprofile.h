@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     editprofile.h                                              *
+ * @brief    page for editing profile                                   *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #ifndef EDITPROFILE_H
 #define EDITPROFILE_H
 

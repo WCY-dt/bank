@@ -1,3 +1,12 @@
+/************************************************************************
+ * Copyright (C) 2021 Chenyang https://wcy-dt.github.io                 *
+ *                                                                      *
+ * @file     creataccount.h                                             *
+ * @brief    page for creating accout                                   *
+ * @author   Chenyang                                                   *
+ * @date     2021 - 07                                                  *
+ ************************************************************************/
+
 #ifndef CREATEACCOUNT_H
 #define CREATEACCOUNT_H
 
